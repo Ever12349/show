@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>html5拖拽</title>
+	<style>
+         #target_01{
+         	width:500px;
+         	height:500px;
+         	background:aqua;
+            box-shadow: 4px 4px 20px;
+            border-radius: 20px;
+         }
+         #img{
+         	width:80px;
+         	height:80px;
+         }
+		 p{
+		    padding:20px;
+		 }
+	 </style>
+</head>
+<body>
+	<div id = "target_01"><p>可以将图片拖放到此处</p></div>
+	<img src="image_01.jpg" id = "img" draggable = "ture" />
+	<script type="text/javascript">
+         var target_01 = document.getElementById("target_01");
+         var images = document.getElementById('img');
+        
+         images.ondragstart = function(e){
+              e.dataTransfer.setData("Text",e.target.id);
+         }
+         target_01.ondrop = function(e){
+              e.preventDefault();
+              var imgId = e.dataTransfer.getData('Text');
+              var s = document.getElementById(imgId);
+              e.target.appendChild(s);
+         }
+         target_01.ondragover = function(e){
+             e.preventDefault();
+         }
+	</script>
+</body>
+</html>

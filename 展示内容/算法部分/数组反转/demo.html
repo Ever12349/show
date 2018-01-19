@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串反转</title>
+</head>
+<body>
+	<input type = "text" placeholder = "请输入" id = "idInputText_001" />
+	<input type = "button" value = "开始计算" id = "idInputButton_001" />
+	<div>计算结果：<span id = "idSpan_001"></span></div>
+	<script>
+        var inputData = document.getElementById("idInputText_001");
+        var calculateButton = document.getElementById("idInputButton_001")
+        var resultArea = document.getElementById("idSpan_001");
+        calculateButton.onclick=function(){
+        	var tempInputDataReverse = inputData.value.split("").reverse().join("");
+            resultArea.innerHTML = tempInputDataReverse;
+            //判断源字符串是否回文
+            var result = inputData.value == tempInputDataReverse;
+            if(result){
+            	resultArea.innerHTML+=" 是回文";
+            }else{
+            	resultArea.innerHTML+=" 不是回文";
+            }
+        }
+	</script>
+</body>
+</html>

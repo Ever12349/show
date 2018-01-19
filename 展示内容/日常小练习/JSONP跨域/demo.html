@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jsonp跨域</title>
+</head>
+<body>
+    <div id = "d1"></div>
+    <script type="text/javascript" >
+			
+			function fn(response){
+	            var div_01 = document.getElementById("d1");
+				div_01.innerHTML = JSON.stringify(response,null," ");
+	        }
+	</script>
+	<script type="text/javascript" >
+		 var url = "https://api.douban.com/v2/book/search?q=javascript&count=1&callback=fn";
+		 var script = document.createElement("script");
+         script.src = 	url;
+         document.body.insertBefore(script, document.body.firstChild);	 
+	</script>
+</body>
+</html>

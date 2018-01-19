@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script type="text/javascript">
+        var alldata = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
+        var alldataarr = alldata.split(",");
+        var num = alldataarr.length - 1;
+        var timer;     
+        function start() {
+            clearInterval(timer);
+            timer = setInterval(change, 10);
+        }
+        function change() {
+            document.getElementById("oknum").innerHTML = alldataarr[GetRnd(0, num)];
+        }
+        function GetRnd(min, max) {
+            return parseInt(Math.random() * (max - min + 1));
+        }     
+        function ok() {
+            clearInterval(timer);
+            document.getElementById("showresult").value = document.getElementById("oknum").innerText;
+        }      
+</script> 
+</head>
+<body>
+ 
+<div id="oknum" name="oknum" >请单击开始</div> 
+    <button onclick="start()" accesskey="s">开始</button>    <!--//accesskey 属性规定激活（使元素获得焦点）元素的快捷键。-->
+<button onclick="ok()" accesskey="o">停止</button> 
+您的选择是： 
+<input type="text" id="showresult" value=""/>
+</body>
+</html>

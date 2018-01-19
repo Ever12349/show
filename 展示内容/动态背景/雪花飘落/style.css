@@ -1,0 +1,13 @@
+*{
+	margin:0;
+	padding:0;
+}
+#snow{
+	position:relative;
+	width:100%;
+	perspective:400px;
+	overflow:hidden;
+}
+img{
+	position:absolute;
+}

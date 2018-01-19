@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>蛇形矩阵</title>
+	<style>
+         .td_01{
+         	width:20px;
+         	height:20px;
+         	line-height: 20px;
+         	text-align: center;
+         	border:1px solid red;
+         	margin:10px;
+         	background: yellow;
+         }
+         .td_02{
+         	width:20px;
+         	height:20px;
+         	line-height: 20px;
+         	text-align: center;
+         	border:1px solid red;
+         	margin:10px;
+         	background: aqua;
+         }
+	</style>
+</head>
+<body>
+	<input type = "textarea" placeholder = "请输入数字" id = "input" />
+	<input type = "button" value = "开始计算" id = "calculate" />
+	<div id = "result">计算结果：</div>
+	<script type="text/javascript">
+        var area = document.getElementById('input');
+        var btn = document.getElementById('calculate');
+
+        var resultArea = document.getElementById('result');
+
+        var result=(function(k){  
+            var c, count = 1 ,s;
+            var arrays = new Array();
+            for(var m = 0;m<k;m++){
+        	    arrays[m] = new Array();
+        	    for(var n =0;n<k;n++){
+                    arrays[m][n] = 0;
+        	    }
+            }
+            calation();
+            function calation(){
+                if(k==0){return false;}
+                if(k%2 == 0){
+                    c = k/2;
+                }else{
+            	    c = (k+1)/2;
+            	    arrays[(k-1)/2][(k-1)/2] = k*k;
+                } 
+                for(var i = 0 ;i < c;i++ ){
+                    if(i > 0 ){
+                        count += 4*(k-(2*i-1)); 
+                    }
+                    s = count ;
+                    for(var j = i;j<(k-i-1);j++){   
+                        arrays[i][j] = s;  
+                        arrays[j][k-i-1] = s+(k-(2*i+1)); 
+                        arrays[k-i-1][k-j-1] = s+2*(k-(2*i+1));
+                        arrays[k-j-1][i] = s+3*(k-(2*i+1));
+                        s++;
+                    }
+                }
+            }
+            return arrays;
+            });
+        btn.onclick = function(){
+        	var k = area.value; 
+
+        	if((k == '')||(k ==null)||(k == undefined)){
+        		resultArea.innerHTML = "请输入正确的数字！";
+        		return false ;
+        	}
+
+        	var reg = /^\d*$/;
+        	var t = reg.test(k);
+            if(!t){
+            	resultArea.innerHTML = "输入错误！";
+            }else{
+            	var number = parseInt(k);
+            	var resultArrays = result(number);
+            	append(resultArrays);
+           }
+        }
+        function append(resultArrays){
+        	resultArea.innerHTML = "计算结果：";
+        	var table = document.createElement('table');
+        	table.className = "ta"
+        	resultArea.appendChild(table);
+        	for(var i = 0 ;i<resultArrays.length;i++){
+        		var tr = document.createElement('tr');
+        		tr.className = "tr";
+        		table.appendChild(tr);
+        		for(var j = 0;j<resultArrays[i].length;j++){
+        			var td = document.createElement('td');
+        			//td.className = "td";
+        			if(i%2 ==0){
+        				td.className = "td_01";
+        			}else{
+        				td.className = "td_02";
+        			}
+        			td.innerHTML = resultArrays[i][j];
+        			tr.appendChild(td);
+        		}
+        	} 
+        }
+        
+	</script>
+</body>
+</html>

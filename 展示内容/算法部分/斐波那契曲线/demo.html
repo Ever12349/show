@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>斐波那契数列</title>
+	<style type="text/css">
+          #can{
+          	border:1px solid #ccc;
+          	box-shadow: 5px 5px 10px;
+          }
+	</style>
+</head>
+<body>
+	<input type = "number" id = "inputId_001" placeholder = "请输入：（不能小于3）" />
+	<input type = "button" id = "inputId_002" value = "计算" />
+	<br/>
+	<canvas id = "can"></canvas>
+
+	<script>
+        var inputNumber = document.getElementById("inputId_001");
+        var button = document.getElementById("inputId_002");
+        var canvas = document.getElementById("can");
+
+        button.onclick=function(){
+        	var n = parseInt(inputNumber.value);
+            if(n<=2){
+            	alert("数据过小，请重新输入");
+            	return false;
+            }
+            var fibonacci = getFibonacci(n);
+            //console.log(typeof(fibonacci));
+            startCanvas(fibonacci);
+        }
+
+
+        function getFibonacci(n){
+            var array = [];
+            if(n<2){
+                for(var i =0;i<n;i++){
+                	array[i]=1;
+                	return array;
+                }
+            }else{
+            	array[0]=1;
+                array[1]=1;
+            	for(var i=2;i<n;i++){
+            		array[i]=array[i-1]+array[i-2];
+            	}
+            	return array;
+            }
+        }
+        
+        function startCanvas(obj){
+        	
+        	canvas.width = (canvasStage(obj)*8)<300?300:(canvasStage(obj)*8);
+        	canvas.height = (canvasStage(obj)*5)<250?250:(canvasStage(obj)*5);
+        	//alert(canvas.width);
+        	var canvasX = (canvas.width)/2;
+        	var canvasY = (canvas.height)/2;
+        	
+        	var context = canvas.getContext("2d");
+        	context.beginPath(); 
+        	context.arc(canvasX,canvasY,5,0,Math.PI,true);
+            context.stroke(); 
+        	var arciclePointX=canvasX;
+        	var arciclePointY=canvasY;
+        	for(var i = 2;i<obj.length;i++){
+        		var R=obj[i]*5;
+        		if(i%2 == 0){
+        			var DaX = obj[(i-2)]*Math.pow(-1,(i-2)/2)*5;
+        			var DaY = 0;
+        		}else if(i%2==1){
+        			var DaX = 0;
+        			var DaY = -obj[(i-2)]*Math.pow(-1,(i+1)/2)*5;
+        		}
+        		arciclePointX += DaX;
+        		arciclePointY += DaY;
+                var cricleStart =-Math.PI/2*i;
+                var cricleEnd = -Math.PI/2*(i+1);
+        		context.arc(arciclePointX,arciclePointY,R,cricleStart,cricleEnd,true);
+        		context.stroke(); 
+        	}
+        }
+
+
+        function canvasStage(obj){
+        	var result = 0;
+        	for(var i = 0;i<obj.length;i++){
+                result += obj[i];
+        	}
+        	return result;
+        }
+	</script>
+</body>
+</html>

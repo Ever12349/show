@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>angularjs</title>
+	<script src = "..\angular.min.js"></script>
+</head>
+<body>
+	<h3>计算价格</h3>
+
+
+	<div ng-app="" ng-init = "number=1;price=5">
+		<div>数量<input type="text" placeholder = "请输入" value="" ng-model = "number" /></div>
+		<div>单价<input type="text" placeholder = "请输入" value="" ng-model = "price" /></div>
+		<div>总价：{{number*price}}元</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>快速排序</title>
+	<style>
+	    #p1{
+		   width:250px;
+		   height:30px;
+		   font-size:16px;
+		}
+		#p2{
+		   width:45px;
+		   height:36px;
+		   text-align:center;
+		}
+	</style>
+</head>
+<body>
+	<input type = "textarea" placeholder = "请输入数字(以英文”,“间隔)" id = "p1" />
+	<input type = "button" value = "计算" id = "p2" />
+	<div id = "d1">
+		结果：
+	</div>
+	<script type="text/javascript">
+         function quickSort(arr){//快速排序算法
+             if(arr.length <= 1){
+             	return arr;
+             }
+             var pivotIndex = Math.floor(arr.length/2);
+             var pivot = Number(arr.splice(pivotIndex,1));
+             var left = [];
+             var right = [];
+             for(var i = 0;i < arr.length;i++){
+             	if(Number(arr[i]) < pivot){
+             		left.push(Number(arr[i]));
+             	}else{
+             		right.push(Number(arr[i]));
+             	}
+             }
+             return quickSort(left).concat([pivot],quickSort(right));
+         }
+         var button = document.getElementById("p2");
+         button.onclick = function(){
+         	var dom = document.getElementById("p1");
+			var div = document.getElementById("d1");
+			var a = dom.value;
+			if((a == "")||(a == null)||(a == undefined)){div.innerHTML = "请输入正确数字"; return false;}
+         	var reg = /^(\d+\,)+\d+$/;//利用正则表达式验证表单
+			var test = reg.test(a);
+			if(test){
+			   div.style.color = "black";
+			   var arr = a.split(",");
+         	   var result = quickSort(arr);
+               div.innerHTML = result;
+			}else{
+			   div.innerHTML = "格式错误";
+			   div.style.color = "red";
+			}
+         }
+         
+         
+
+	</script>
+</body>
+</html>

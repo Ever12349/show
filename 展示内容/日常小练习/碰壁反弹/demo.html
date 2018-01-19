@@ -1,0 +1,62 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset = "utf-8" />
+	<style type="text/css">
+        #d1 {
+        width:30px;
+        height:30px;
+        background:red;
+    }   
+	</style>
+	<script type="text/javascript">
+        window.onload = setPosition;
+        function setPosition () {
+        	var obj = document.getElementById("d1");
+        	obj.style.position = "relative";
+        	obj.style.left = 0;
+        	obj.style.top = 0;
+        	window.setInterval("moveDiv()",10);
+        }
+        var movex = 1,movey = 1;
+        function moveDiv () {
+        	var obj = document.getElementById("d1");
+        	var x = parseInt(obj.style.left);
+        	var y = parseInt(obj.style.top);
+        	if (movex == 1) {
+        		x+=2;
+        		obj.style.left = x +"px";
+        		if (x > 1170) {
+        			movex = 0;
+        		}
+        	}
+        	if (movex == 0) {
+        		x--;
+        		obj.style.left = x +"px";
+        		if (x<0) {
+        			movex = 1;
+        		}
+        	}
+        	if (movey == 1) {
+        		y++;
+        		obj.style.top = y +"px";
+        		if (y > 600) {
+        			movey = 0;
+        		}
+        	}
+        	if (movey == 0) {
+        		y-=2;
+        		obj.style.top = y +"px";
+        		if (y < 0) {
+        			movey = 1;
+        		}
+        	}
+        	//obj.style.top = y +"px";
+        }
+	</script>
+</head>
+<body>
+    <div id = "d1"></div>
+</body>
+</html>

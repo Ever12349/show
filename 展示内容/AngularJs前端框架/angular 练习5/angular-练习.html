@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>angularjs表单验证</title>
+	<script src = "..\angular.min.js"></script>
+	<script type="text/javascript">
+	</script>
+</head>
+<body>
+   <div ng-app = "myApp" ng-controller = "myCtrl">
+        <form name = "myform" novalidate>
+            <h3>表单验证</h3>
+            验证是否是数字: 
+            <span ng-repeat = "re in regNumber.regList | filter:regNumber.regValue">{{re.text}}
+            </span><br/>
+            <input type = "number" placeholder = "请输入数字" name ="name_mynumber" required ng-pattern ="/^[0-9]+$/" ng-model = "ng_mynumber" ng-blur = "change(regNumber,myform.name_mynumber.$error)" /> <br/>
+
+            验证是否是文本：
+            <span ng-repeat = "re in regText.regList | filter:regText.regValue">{{re.text}}
+            </span><br/>
+            <input type = "text" placeholder = "请输入信息" name ="name_myText" required ng-pattern ="/^[a-zA-Z]+/" ng-model = "ng_myText" ng-maxlength = "10" ng-minlength="2" ng-blur = "change(regText,myform.name_myText.$error)" /> <br/>
+
+            验证是否是邮箱：
+            <span ng-repeat = "re in regEmail.regList | filter:regEmail.regValue">{{re.text}}
+            </span><br/>
+            <input type = "email" placeholder = "请输入邮箱地址" name ="name_myEmail" required  ng-model = "ng_myEmail" ng-blur = "change(regEmail,myform.name_myEmail.$error)" /> <br/>
+            <!--<span>{{myform.name_myEmail.$error}}</span> -->
+
+            验证密码：
+            <span ng-repeat = "re in regPassword.regList | filter:regPassword.regValue">{{re.text}}
+            </span><br/>
+            <input type = "Password" placeholder = "请输入密码" name ="name_myPassword" required  ng-model = "ng_myPassword" ng-minlength="6" ng-maxlength = "16" ng-blur = "change(regPassword,myform.name_myPassword.$error)" /> <br/>
+            再次输入密码：
+            <span ng-repeat = "re in regPassword_next.regList | filter:regPassword_next.regValue">{{re.text}}
+            </span><br/>
+            <input type = "Password" placeholder = "请再次输入密码" name ="name_myPassword_next" required  ng-model = "ng_myPassword_next" ng-blur = "regPassword_next.judge(ng_myPassword,ng_myPassword_next)" /> <br/><span>{{ng_myPassword}}</span>
+        </form>
+    </div>        
+
+
+<script src="script.js"></script> 
+</body>
+</html>

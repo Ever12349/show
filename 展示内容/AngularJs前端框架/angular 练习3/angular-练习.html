@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>angularjs练习3</title>
+	<script src = "..\angular.min.js"></script>
+</head>
+<body>
+	<h3>ng-repeat</h3>
+	<div ng-app="" ng-init ="names=[{
+        name:'Jhon',country:'China'
+	},{
+        name:'Kid',country:'Janpan'
+	},{
+        name:'Nancy',country:'America'
+	}]">
+		<div><ul>
+			<li ng-repeat = "x in names">
+				{{x.name+","+x.country}}
+			</li>
+		</ul>
+	</div></div>
+</body>
+</html>

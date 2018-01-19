@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>angularjs表单验证</title>
+	<script src = "..\angular.min.js"></script>
+	<style type="text/css">
+        .classDiv_01{
+            width:250px;
+            height:200px;
+            border:1px solid red;
+            display:none;
+        }
+        #idDiv_01{
+            display:block;
+        }
+    </style>
+    <script type="text/javascript">
+	</script>
+</head>
+<body>
+    <div ng-app = "myApp" ng-controller = "myCtrl">
+        <div my-directive my-id ="idDiv_001" my-text ="text" my-fn = "show(str)"></div>
+        <div my-directive my-id ="idDiv_002" my-text ="text" ></div>
+    </div>        
+
+
+<!--    <input type = "button" value = "第一页">
+    <input type = "button" value = "第二页">
+    <input type = "button" value = "第三页">
+    <div class = "classDiv_01" id = "idDiv_01">第一页</div>
+    <div class = "classDiv_01">第二页</div>
+    <div class = "classDiv_01">第三页</div>
+-->
+<script src="script.js"></script> 
+</body>
+</html>

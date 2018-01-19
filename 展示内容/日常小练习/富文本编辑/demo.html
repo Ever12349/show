@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+     <head>
+	      <meta charset = "UTF-8" />
+		  <title>富文本编辑</title>
+		  <style>
+		      .classDiv_01{
+			       width:500px;
+				   height:300px;
+				   border:1px solid red;
+			  }
+			  .emojiCLassDiv{
+			  	height:20px;
+			  	width:60px;
+			  	background:#ccc;
+			  	font-size: 12px;
+			  	box-shadow: 4px 4px 8px;
+			  	text-align: center;
+			  	line-height: 20px;
+			  	float:left;
+			  }
+			  .emojiCLassDiv img{
+			  	width:50px;
+			  	height:50px;
+			  	margin:5px;
+			  	border:1px solid #ccc;
+			  	box-shadow: 2px 2px 5px;
+			  }
+			  .emojiClassImgDiv {
+			  	display: none;
+			  }
+			  .classDiv_01 img{
+                 width:20px;
+			  	 height:20px;
+			  }
+			  .backgroundClassDiv{
+			  	width:100px;
+			  	height:50px;
+			  	border:1px solid #ccc;
+			  	display:none;
+			  	position:absolute;
+			  	left:130px;
+			  }
+			  .bgcolorClassDiv{
+			  	margin:0;
+			  	padding:0;
+			  	width:50px;
+			  	height:50px;
+			  	float: left;
+			  }
+		  </style>
+	 </head>
+	 <body>
+	      <div class = "classDiv_01" id ="idDiv_01" contenteditable = "true"></div>
+		  <input type ="button" value = "加粗" id= "input_01" />
+		  <input type ="button" value = "斜体" id= "input_02" />
+		  <input type ="button" value = "字体颜色" id= "input_03" />
+		  <div class = "backgroundClassDiv" id = "backgroundIdDiv">
+		  	    <div class = "bgcolorClassDiv"></div>
+		  	    <div class = "bgcolorClassDiv"></div>
+		  </div>
+		  <input type ="button" value = "缩进" id= "input_04" />
+		  <input type ="button" value = "居中" id= "input_05" />
+		  <input type ="button" value = "下划线" id= "input_06" />
+          <div class = "emojiCLassDiv" id ="emojiIdDiv">
+          	   表情符号
+          	   <div class = "emojiClassImgDiv" id = "emojiIdImgDiv">
+          	   	  <img src = "images/images_001.jpg" alert = "emoji" />
+          	   	  <img src = "images/images_002.jpg" alert = "emoji" />
+          	   </div>
+          </div>
+          <script>
+		        window.onload = function(){
+					var emoji = document.getElementById('emojiIdDiv');
+					var emojiIdDiv = document.getElementById('emojiIdImgDiv');
+					var btn =document.getElementById("input");
+					var doc = document.getElementById('idDiv_01');
+					var images = emojiIdDiv.getElementsByTagName('img');
+					var backgroundIdDiv = document.getElementById('backgroundIdDiv');
+                    var bgcolorClassDiv = document.getElementsByClassName('bgcolorClassDiv');
+                    var inputArray =[];
+					getInput();
+					addEmoji();
+					function getInput(){
+						for(var i = 1;i<=6;i++){
+                          inputArray[i]= document.getElementById("input_0"+i);
+                          switch(i){
+                          	case 1:inputArray[i].onclick = function(){  //加粗
+                                   blod();
+                          	};
+                          	break;
+                          	case 2:inputArray[i].onclick = function(){  //斜体
+                                   italic();
+                          	};
+                          	break;
+                          	case 3:inputArray[i].onclick = function(){  //改变颜色
+                          	       chcolor();
+                          	};
+                          	break;
+                          	case 4:inputArray[i].onclick = function(){  //缩进
+                                   indent();
+                          	};
+                          	break;
+                          	case 5:inputArray[i].onclick = function(){  //居中
+                                   justifycenter();
+                          	};
+                          	break; 
+                          	default:inputArray[i].onclick = function(){  //下划线
+                                   underline();
+                          	};
+                          }
+						}
+					}
+                    function blod(){
+                    	doc = document.execCommand('bold',false,null);
+                    }
+                    function italic(){
+                    	doc = document.execCommand('italic',false,null);
+                    }
+                    function indent(){
+                    	doc = document.execCommand('indent',false,null);
+                    }
+                    function justifycenter(){
+                    	doc = document.execCommand('justifycenter',false,null);
+                    }
+                    function underline(){
+                    	doc = document.execCommand('underline',false,null);
+                    }
+                    function chcolor(){
+                    	doc = document.execCommand('backcolor',false,"pink");
+                    	
+                    }
+					emoji.onmouseover = function(){
+                         emojiIdDiv.style.display = "block";
+					}
+					emoji.onmouseout = function(){
+                         emojiIdDiv.style.display = "none";
+					}
+                    function randomColor(min,max){
+                    	return parseInt(Math.random()*(max-min)-min);
+                    }
+
+                    function addEmoji(){
+                    	for(var i = 0;i<images.length;i++){
+                    		images[i].onclick = function(){
+                                var imgSrc = this.src;
+                                console.log(this);
+                                addImg(imgSrc);
+                    		}
+                    	}
+
+                    }
+
+                    function addImg(src){
+                          doc = document.execCommand('insertimage',false,src);
+                    }
+                }
+		  </script>		  
+	 </body>
+</html>
