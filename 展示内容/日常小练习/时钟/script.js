@@ -3,7 +3,7 @@ canvasAreas.width=  400;
 canvasAreas.height=  400;
 var canvasX = (canvasAreas.width)/2;
 var canvasY = (canvasAreas.height)/2;
-var context = canvas.getContext("2d");
+var context = canvasAreas.getContext("2d");
 context.translate(canvasX,canvasY);
 function Clock(){};
 Clock.prototype = {
