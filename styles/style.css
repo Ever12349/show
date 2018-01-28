@@ -16,8 +16,7 @@ body {
 }
 .div_01{
 	width:10%;
-	background:#AE57A4;
-	height:100%;
+	background:#AE57A4;	height:100%;
 	float:left;
 	position:absolute;
 	top:0;
@@ -37,7 +36,6 @@ ul {
 	line-height:40px;
 	font-size:20px;
 	cursor:pointer;
-	height:40px;
 }
 .div1 {
 	display:none;
