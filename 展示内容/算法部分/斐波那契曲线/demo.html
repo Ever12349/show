@@ -22,14 +22,17 @@
         var canvas = document.getElementById("can");
 
         button.onclick=function(){
-        	var n = parseInt(inputNumber.value);
-            if(n<=2){
+        	
+			var n = parseInt(inputNumber.value);
+            if(!n){
+			    alert("不能为空");
+			}else if(n<=2){
             	alert("数据过小，请重新输入");
-            	return false;
-            }
-            var fibonacci = getFibonacci(n);
-            //console.log(typeof(fibonacci));
-            startCanvas(fibonacci);
+            }else{
+			    var fibonacci = getFibonacci(n);
+                //console.log(typeof(fibonacci));
+                startCanvas(fibonacci);
+			}
         }
 
 
